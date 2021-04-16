@@ -12,6 +12,8 @@
   font-size: 2rem;
   color: white;
   font-weight: bold;
+  /* added */
+  font-size: 1.25rem;
 }
 
 .header ul {
@@ -30,6 +32,8 @@
   text-decoration: none;
   font-size: 1.5rem;
   color: #fcb8d2;
+  /* added */
+  font-size: 1rem;
 }
 
 .header a:hover,
