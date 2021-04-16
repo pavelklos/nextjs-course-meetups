@@ -1,5 +1,16 @@
-const NewMeetup = () => {
-  return <h1>ADD NEW MEETUP</h1>;
+import { Fragment } from "react";
+import NewMeetupForm from "../../components/meetups/NewMeetupForm";
+
+const NewMeetupPage = () => {
+  function addMeetupHandler(meetupData) {
+    console.log(meetupData);
+  }
+
+  return (
+    <Fragment>
+      <NewMeetupForm onAddMeetup={addMeetupHandler} />
+    </Fragment>
+  );
 };
 
-export default NewMeetup;
+export default NewMeetupPage;
