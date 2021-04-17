@@ -16,23 +16,50 @@ const HomePage = (props) => {
       {/* <MeetupList meetups={DUMMY_DATA} /> */}
       {/* <MeetupList meetups={loadedMeetups} /> */}
       <p className='created'>
-        created: <b>{props.created}</b> : <b>[SSG]</b> getStaticProps()
+        created: <b>{props.created}</b> : {props.function} <b>{props.type}</b>
       </p>
       <MeetupList meetups={props.meetups} />
     </Fragment>
   );
 };
 
+// [SSG]
 export async function getStaticProps() {
-  // fetch data from API : connect file system, database, ...
+  // fetch data from API : connect file system, database, ... (SAFE FOR CREDENTIALS)
   return {
     props: {
       meetups: DUMMY_DATA,
       created: new Date().toLocaleString(),
+      type: "[SSG]",
+      function: "getStaticProps() + revalidate",
     },
     revalidate: 10, // 10 seconds
   };
 }
+
+// // [SSR]
+// export async function getServerSideProps(context) {
+//   // fetch data from API : connect file system, database, ... (SAFE FOR CREDENTIALS)
+//   // console.log(context); // WE CAN WORK WIT CONTEXT (REQUEST, RESPONSE)
+//   const req = context.req;
+//   const res = context.res;
+//   const body = req.body; // BODY FOR POST, PUT, PATCH, ...
+//   const cookie = req.headers.cookie; // SESSION COOKIE [FOR AUTHENTICATION]
+//   // [cookie]
+//   //   next-auth.csrf-token
+//   //   next-auth.callback-url
+//   //   next-auth.session-token
+//   // console.log({ cookie: cookie });
+
+//   return {
+//     props: {
+//       meetups: DUMMY_DATA,
+//       created: new Date().toLocaleString(),
+//       type: "[SSR]",
+//       function: "getServerSideProps()",
+//     },
+//   };
+// }
 
 export default HomePage;
 
