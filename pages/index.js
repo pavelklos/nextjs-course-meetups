@@ -1,10 +1,20 @@
-import { Fragment } from "react";
+import { Fragment, useEffect, useState } from "react";
 import MeetupList from "../components/meetups/MeetupList";
 
 const HomePage = () => {
+  const [loadedMeetups, setLoadedMeetups] = useState([]);
+
+  useEffect(() => {
+    // send a http request and fetch data [async]
+    // set state
+    setLoadedMeetups(DUMMY_DATA);
+    console.log("useEffect");
+  }, []); // ON INITIAL RENDER
+
   return (
     <Fragment>
-      <MeetupList meetups={DUMMY_DATA} />
+      {/* <MeetupList meetups={DUMMY_DATA} /> */}
+      <MeetupList meetups={loadedMeetups} />
     </Fragment>
   );
 };
@@ -30,7 +40,6 @@ const DUMMY_DATA = [
     description:
       "This is a second, amazing meetup which you definitely should not miss. It will be a lot of fun!",
   },
-  ,
   {
     id: "m3",
     title: "This is a third meetup",
