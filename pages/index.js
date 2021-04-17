@@ -1,23 +1,34 @@
 import { Fragment, useEffect, useState } from "react";
 import MeetupList from "../components/meetups/MeetupList";
 
-const HomePage = () => {
-  const [loadedMeetups, setLoadedMeetups] = useState([]);
-
-  useEffect(() => {
-    // send a http request and fetch data [async]
-    // set state
-    setLoadedMeetups(DUMMY_DATA);
-    console.log("useEffect");
-  }, []); // ON INITIAL RENDER
+const HomePage = (props) => {
+  // // [REACT] STANDARD FETCH DATA : useEffect + useState
+  // const [loadedMeetups, setLoadedMeetups] = useState([]);
+  // useEffect(() => {
+  //   // send a http request and fetch data [async]
+  //   // set state
+  //   setLoadedMeetups(DUMMY_DATA);
+  //   console.log("useEffect");
+  // }, []); // ON INITIAL RENDER
 
   return (
     <Fragment>
       {/* <MeetupList meetups={DUMMY_DATA} /> */}
-      <MeetupList meetups={loadedMeetups} />
+      {/* <MeetupList meetups={loadedMeetups} /> */}
+      <p className='created'>
+        created: <b>{props.created}</b> : <b>[SSG]</b> getStaticProps()
+      </p>
+      <MeetupList meetups={props.meetups} />
     </Fragment>
   );
 };
+
+export async function getStaticProps() {
+  // fetch data from API : connect file system, database, ...
+  return {
+    props: { meetups: DUMMY_DATA, created: new Date().toLocaleString() },
+  };
+}
 
 export default HomePage;
 

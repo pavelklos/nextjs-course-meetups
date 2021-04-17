@@ -18,3 +18,11 @@ h5,
 h6 {
   font-family: "Lato", sans-serif;
 }
+
+/* ADDED */
+.created {
+  font-size: 0.85rem;
+  color: darkviolet;
+  border: 1px solid;
+  text-align: center;
+}
