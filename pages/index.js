@@ -26,7 +26,11 @@ const HomePage = (props) => {
 export async function getStaticProps() {
   // fetch data from API : connect file system, database, ...
   return {
-    props: { meetups: DUMMY_DATA, created: new Date().toLocaleString() },
+    props: {
+      meetups: DUMMY_DATA,
+      created: new Date().toLocaleString(),
+    },
+    revalidate: 10, // 10 seconds
   };
 }
 
