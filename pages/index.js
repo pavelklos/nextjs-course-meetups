@@ -1,3 +1,4 @@
+import { MongoClient } from "mongodb"; // ONLY ON THE SERVER : USED IN 'getStaticProps()'
 import { Fragment, useEffect, useState } from "react";
 import MeetupList from "../components/meetups/MeetupList";
 
@@ -26,9 +27,28 @@ const HomePage = (props) => {
 // [SSG]
 export async function getStaticProps() {
   // fetch data from API : connect file system, database, ... (SAFE FOR CREDENTIALS)
+  const connectionString = `mongodb+srv://${process.env.mongodb_username}:${process.env.mongodb_password}@${process.env.mongodb_clustername}.gmwjq.mongodb.net/${process.env.mongodb_database}?retryWrites=true&w=majority`;
+  const client = await MongoClient.connect(connectionString, {
+    // useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
+  const db = client.db();
+  const meetupsCollection = db.collection("meetups"); // collection = table
+  const meetups = await meetupsCollection.find().toArray(); // array of documents = rows
+  // console.log(meetups);
+  client.close();
+
   return {
     props: {
-      meetups: DUMMY_DATA,
+      // meetups: DUMMY_DATA,
+      // meetups: meetups, // Error serializing `_id`
+      meetups: meetups.map((meetup) => ({
+        id: meetup._id.toString(), // JS Object to String
+        title: meetup.title,
+        image: meetup.image,
+        address: meetup.address,
+        // description: meetup.description,
+      })),
       created: new Date().toLocaleString(),
       type: "[SSG]",
       function: "getStaticProps() + revalidate",

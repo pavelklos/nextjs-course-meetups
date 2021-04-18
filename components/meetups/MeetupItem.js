@@ -32,6 +32,7 @@ function MeetupItem(props) {
         </div>
         <div className={classes.actions}>
           <button onClick={showDetailsHandler}>Show Details</button>
+          <h5>{props.id}</h5>
         </div>
       </Card>
     </li>
