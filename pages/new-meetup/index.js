@@ -22,8 +22,15 @@ const NewMeetupPage = () => {
     router.push("/"); // replace
   }
 
+  const propsCreated = new Date().toLocaleString();
+  const propsFunction = "no initial props";
+  const propsType = "[Static]";
+
   return (
     <Fragment>
+      <p className='created'>
+        created: <b>{propsCreated}</b> : {propsFunction} <b>{propsType}</b>
+      </p>
       <NewMeetupForm onAddMeetup={addMeetupHandler} />
     </Fragment>
   );
