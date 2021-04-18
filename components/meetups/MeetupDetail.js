@@ -9,6 +9,7 @@ function MeetupDetail(props) {
       <h1>{props.title}</h1>
       <address>{props.address}</address>
       <p>{props.description}</p>
+      <h5>{props.id}</h5>
     </section>
   );
 }
