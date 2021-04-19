@@ -115,7 +115,8 @@ export async function getStaticPaths() {
     //   { params: { meetupId: "m3" } },
     // ],
     paths: paths,
-    fallback: false, // false, true, 'blocking'
+    // fallback: false, // false, true, 'blocking'
+    fallback: "blocking",
   };
 }
 
