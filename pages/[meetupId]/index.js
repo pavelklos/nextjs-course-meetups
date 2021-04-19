@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { MongoClient, ObjectId } from "mongodb"; // ONLY ON THE SERVER : USED IN 'getStaticProps()'
 import { useRouter } from "next/router";
 import { Fragment } from "react";
@@ -9,6 +10,10 @@ const MeetupDetails = (props) => {
 
   return (
     <Fragment>
+      <Head>
+        <title>{props.meetup.title}</title>
+        <meta name='description' content={props.meetup.description} />
+      </Head>
       <p className='created'>
         created: <b>{props.created}</b> : {props.function} <b>{props.type}</b>
       </p>

@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { Fragment } from "react";
 import { useRouter } from "next/router";
 import NewMeetupForm from "../../components/meetups/NewMeetupForm";
@@ -28,8 +29,16 @@ const NewMeetupPage = () => {
 
   return (
     <Fragment>
+      <Head>
+        <title>Add a New Meetup</title>
+        <meta
+          name='description'
+          content='Add your own meetups and create amazing networking opportunities!'
+        />
+      </Head>
       <p className='created'>
-        created: <b>{propsCreated}</b> : {propsFunction} <b>{propsType}</b>
+        created: <b suppressHydrationWarning={true}>{propsCreated}</b> :{" "}
+        {propsFunction} <b>{propsType}</b>
       </p>
       <NewMeetupForm onAddMeetup={addMeetupHandler} />
     </Fragment>

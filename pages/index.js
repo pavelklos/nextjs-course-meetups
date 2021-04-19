@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { MongoClient } from "mongodb"; // ONLY ON THE SERVER : USED IN 'getStaticProps()'
 import { Fragment, useEffect, useState } from "react";
 import MeetupList from "../components/meetups/MeetupList";
@@ -16,6 +17,13 @@ const HomePage = (props) => {
     <Fragment>
       {/* <MeetupList meetups={DUMMY_DATA} /> */}
       {/* <MeetupList meetups={loadedMeetups} /> */}
+      <Head>
+        <title>NextJS Meetups</title>
+        <meta
+          name='description'
+          content='Browse a huge list of highly active React meetups!'
+        />
+      </Head>
       <p className='created'>
         created: <b>{props.created}</b> : {props.function} <b>{props.type}</b>
       </p>
